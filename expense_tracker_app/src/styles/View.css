@@ -1,0 +1,103 @@
+.view-page {
+  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  width: 200px; /* Sidebar width */
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+.sidebar button {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #71e0eb;
+  color:#321193;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.sidebar button:hover {
+  background-color:#321193;
+  color: #71e0eb;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.upper-half {
+  display: flex;
+  flex-direction: row; /* Horizontal layout */
+  height: 40%;
+}
+
+.section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px; /* Spacing between sections */
+}
+
+h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em; /* Larger font for section titles */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Divide each section into 3 equal columns */
+  gap: 10px; /* Space between boxes */
+  flex: 2;
+}
+
+.box {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+h4 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+p {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Visibility rules */
+.hidden {
+  display: none;
+}
+
+.active {
+  display: flex; /* Ensure the box is displayed */
+}
+
+/* Ensure the body and html have no extra margins or padding */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}

@@ -1,0 +1,22 @@
+.home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+    text-align: center;
+}
+
+.chart-container {
+    width: 400px; /* Small size for the chart */
+    height: 200px; /* Make it a square */
+    margin: 0 auto; /* Horizontally center */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically center the chart inside */
+}
+
+canvas {
+    max-width: 200%; /* Ensure the chart fits within the container */
+    max-height: 200%;
+}

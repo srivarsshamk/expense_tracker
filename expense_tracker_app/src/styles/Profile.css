@@ -1,0 +1,77 @@
+/* src/components/Profile.css */
+.profile-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-edit {
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.editable-fields input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 90%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.editable-fields button {
+  background-color: #06d1f9;
+  color: #32118f;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.editable-fields button:hover {
+  background-color: #32118f;
+  color: #03d8f0;
+}
+
+.user-details h3,
+.user-details p {
+  margin: 10px 0;
+}
+
+.logout-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  background-color: #03d8f0;
+  color:#32118f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.logout-btn:hover {
+  background-color: #32118f;
+}
