@@ -1,6 +1,12 @@
 import React from 'react';
-import { Pie, } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import '../styles/Home.css';
+
+// Ensure chart.js is properly imported
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
+// Register components needed for the Pie chart
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Home() {
   const data = {
