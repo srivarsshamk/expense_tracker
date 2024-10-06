@@ -6,13 +6,12 @@ function Profile() {
   const [user, setUser] = useState({
     name: 'John Doe',
     email: 'johndoe@example.com',
-    phone: '123-456-7890', // Initial phone number
+    phone: '123-456-7890',
   });
 
   const [profileImage, setProfileImage] = useState('https://via.placeholder.com/150');
-  const [isEditing, setIsEditing] = useState(false); // State to toggle edit mode
+  const [isEditing, setIsEditing] = useState(false);
 
-  // Handle image upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -24,37 +23,35 @@ function Profile() {
     }
   };
 
-  // Handle input change for name and phone
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
-  // Toggle between edit and view mode
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   };
 
-  // Save changes
   const handleSave = () => {
-    toggleEdit(); // Exit edit mode after saving
+    toggleEdit();
   };
 
   return (
     <div className="profile-page">
-      <h2>User Profile</h2>
+      <div className="profile-container">
+        <h2 className="profile-title">My Profile</h2>
 
-      <div className="profile-section">
-        {/* User Information */}
-        <div className="profile-info">
-          <img
-            className="profile-pic"
-            src={profileImage}
-            alt="User Profile"
-          />
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
+        <div className="profile-card">
+          <div className="profile-image-container">
+            <img className="profile-pic" src={profileImage} alt="User Profile" />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="upload-btn"
+            />
+          </div>
 
-          {/* Editable Fields */}
           {isEditing ? (
             <div className="editable-fields">
               <input
@@ -62,6 +59,7 @@ function Profile() {
                 name="name"
                 value={user.name}
                 onChange={handleInputChange}
+                className="input-field"
                 placeholder="Enter your name"
               />
               <input
@@ -69,29 +67,32 @@ function Profile() {
                 name="phone"
                 value={user.phone}
                 onChange={handleInputChange}
+                className="input-field"
                 placeholder="Enter your phone number"
               />
-              <button onClick={handleSave}>Save</button>
+              <button className="save-btn" onClick={handleSave}>
+                Save
+              </button>
             </div>
           ) : (
             <div className="user-details">
-              <h3>{user.name}</h3>
-              <p>{user.email}</p>
-              <p>{user.phone}</p>
-              <button onClick={toggleEdit}>Edit Profile</button>
+              <h3 className="user-name">{user.name}</h3>
+              <p className="user-email">{user.email}</p>
+              <p className="user-phone">{user.phone}</p>
+              <button className="edit-btn" onClick={toggleEdit}>
+                Edit Profile
+              </button>
             </div>
           )}
         </div>
 
-        {/* Password Update */}
-        <div className="profile-edit">
-          <h3>Update Password</h3>
-          <input type="password" placeholder="Current Password" />
-          <input type="password" placeholder="New Password" />
-          <button>Update Password</button>
+        <div className="password-section">
+          <h3>Change Password</h3>
+          <input type="password" className="input-field" placeholder="Current Password" />
+          <input type="password" className="input-field" placeholder="New Password" />
+          <button className="update-password-btn">Update Password</button>
         </div>
 
-        {/* Logout Button */}
         <button className="logout-btn">Logout</button>
       </div>
     </div>
