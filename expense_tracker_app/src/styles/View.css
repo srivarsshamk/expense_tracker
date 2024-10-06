@@ -1,103 +1,181 @@
-.view-page {
+/* Container for the whole page */
+.container {
   display: flex;
   height: 100vh;
-  box-sizing: border-box;
 }
 
+/* Sidebar styling */
 .sidebar {
-  width: 200px; /* Sidebar width */
-  height: 450px;
+  width: 20%;
+  min-width: 200px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  background-color: #f1f1f1;
+  align-items: flex-start;
 }
 
 .sidebar button {
-  padding: 10px;
+  width: 100%;
+  padding: 15px;
   margin-bottom: 10px;
-  background-color: #71e0eb;
-  color:#321193;
+  background-color: #7fe0ff;
   border: none;
-  border-radius: 4px;
+  color: #1e40af;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 1em;
+  text-align: center;
+  position: relative;
 }
 
 .sidebar button:hover {
-  background-color:#321193;
-  color: #71e0eb;
+  background-color: #b2ebf2;
 }
 
-.content {
+/* Tick mark for selected options */
+.sidebar button.selected::before {
+  content: '✔'; /* Unicode tick mark */
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #4caf50;
+  font-size: 18px;
+}
+
+/* Main content area */
+.main-content {
   flex: 1;
-  display: flex;
-  flex-direction: column;
   padding: 20px;
-  box-sizing: border-box;
-}
-
-.upper-half {
-  display: flex;
-  flex-direction: row; /* Horizontal layout */
-  height: 40%;
-}
-
-.section {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 0 10px; /* Spacing between sections */
-}
-
-h3 {
-  margin-bottom: 10px;
-  font-size: 1.5em; /* Larger font for section titles */
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Divide each section into 3 equal columns */
-  gap: 10px; /* Space between boxes */
-  flex: 2;
-}
-
-.box {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Top section for search and sort */
+.top-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  width: 60%;
+  position: relative;
+}
+
+.search-bar input[type="text"] {
+  padding: 10px 40px 10px 10px; /* Added padding for the search icon */
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-bar .search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+/* Sorting dropdown */
+.sorting-options {
+  width: 30%;
+}
+
+.sorting-options select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
   width: 100%;
 }
 
-h4 {
+/* View buttons in the right side */
+.view-toggle {
+  position: absolute;
+  right: 20px;
+  top: 80px; /* Adjusted top position to avoid overlapping with sort button */
+  display: flex;
+  flex-direction: column;
+}
+
+.view-toggle button {
+  padding: 10px 20px;
   margin-bottom: 10px;
-  font-size: 1.2em;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-p {
-  font-size: 1.5em;
-  font-weight: bold;
+.view-toggle button:hover {
+  background-color: #45a049;
 }
 
-/* Visibility rules */
-.hidden {
-  display: none;
+/* Center section for displaying posts or graphs */
+.content-display {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px; /* Added space to ensure content isn't hidden behind view buttons */
 }
 
-.active {
-  display: flex; /* Ensure the box is displayed */
+.posts-view {
+  width: 100%;
 }
 
-/* Ensure the body and html have no extra margins or padding */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
+.post {
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 100%;
+}
+
+/* Graph view styling */
+.graph-view {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+
+  .top-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-bar, 
+  .sorting-options {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .view-toggle {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+  }
 }
