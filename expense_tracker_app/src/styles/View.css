@@ -1,7 +1,8 @@
 /* Container for the whole page */
 .container {
   display: flex;
-  height: 100vh;
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden; /* Prevent scrolling on the container */
 }
 
 /* Sidebar styling */
@@ -14,7 +15,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  overflow-y: auto; /* Allow scrolling in sidebar if needed */
 }
+
 
 .sidebar button {
   width: 100%;
@@ -34,9 +37,8 @@
   background-color: #b2ebf2;
 }
 
-/* Tick mark for selected options */
 .sidebar button.selected::before {
-  content: '✔'; /* Unicode tick mark */
+  content: '✔';
   position: absolute;
   right: 15px;
   top: 15px;
@@ -50,43 +52,47 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   box-sizing: border-box;
   position: relative;
+  overflow-y: auto; /* Allow scrolling in main content */
 }
 
-/* Top section for search and sort */
+/* Top section for search, sort, and export */
 .top-section {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+  padding-bottom: 10px;
+}
+
+
+.search-sort-container {
+  display: flex;
+  align-items: center;
+  width: 70%;
 }
 
 .search-bar {
   width: 60%;
-  position: relative;
+  margin-right: 20px;
 }
 
 .search-bar input[type="text"] {
-  padding: 10px 40px 10px 10px; /* Added padding for the search icon */
+  padding: 10px;
   width: 100%;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 
-.search-bar .search-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #aaa;
-}
-
 /* Sorting dropdown */
 .sorting-options {
-  width: 30%;
+  width: 40%;
 }
 
 .sorting-options select {
@@ -96,13 +102,38 @@
   width: 100%;
 }
 
-/* View buttons in the right side */
-.view-toggle {
-  position: absolute;
-  right: 20px;
-  top: 80px; /* Adjusted top position to avoid overlapping with sort button */
+/* Export button */
+.export-button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.export-button:hover {
+  background-color: #45a049;
+}
+
+/* Right sidebar for view toggle */
+.right-sidebar {
+  width: 20%;
+  min-width: 200px;
+  padding: 20px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.view-toggle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .view-toggle button {
@@ -113,6 +144,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 100%;
 }
 
 .view-toggle button:hover {
@@ -123,10 +155,11 @@
 .content-display {
   width: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px; /* Added space to ensure content isn't hidden behind view buttons */
+  flex: 1;
+  overflow-y: auto; /* Enable scrolling if needed */
+  padding-bottom: 20px; /* Reduced padding */
 }
 
 .posts-view {
@@ -140,7 +173,9 @@
   border-radius: 5px;
   background-color: #fff;
   width: 100%;
+  box-sizing: border-box; /* Ensure padding is included in width */
 }
+
 
 /* Graph view styling */
 .graph-view {
@@ -152,9 +187,10 @@
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    overflow-y: auto; /* Allow scrolling on mobile */
   }
 
-  .sidebar {
+  .sidebar, .right-sidebar {
     width: 100%;
   }
 
@@ -162,20 +198,29 @@
     width: 100%;
   }
 
-  .top-section {
+  .top-section, .search-sort-container {
     flex-direction: column;
     align-items: flex-start;
   }
 
   .search-bar, 
-  .sorting-options {
+  .sorting-options,
+  .export-button {
     width: 100%;
     margin-bottom: 10px;
   }
 
-  .view-toggle {
-    position: static;
-    flex-direction: row;
-    justify-content: center;
+  .content-display {
+    width: 100%;
   }
+}
+
+.gap {
+  width: 20px; /* Adjust width as needed for spacing */
+}
+
+/* Style for the export icon */
+.export-icon {
+  cursor: pointer;
+  margin-left: 10px; /* Add margin for better spacing */
 }

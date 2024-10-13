@@ -55,3 +55,25 @@ button:hover {
   background-color: #321193;
   color:#71e0eb;
 }
+
+.notification {
+  position: fixed;
+  bottom: 60px; /* Increase the distance from the bottom */
+  right: 20px; /* Distance from the right */
+  background-color: #add8e6; /* Light blue color */
+  color: #321193; /* Text color */
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease; /* Smooth transition for fading */
+  z-index: 1000; /* Ensure it is above other elements */
+}
+
+.notification.success {
+  border-left: 5px solid #28a745; /* Green left border for success */
+}
+
+.notification.error {
+  border-left: 5px solid #dc3545; /* Red left border for error */
+}
+
