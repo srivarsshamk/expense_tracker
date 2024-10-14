@@ -1,16 +1,22 @@
 // src/components/Profile.js
 import React, { useState } from 'react';
-import '../styles/Profile.css';
+import {
+  Avatar, Button, TextField, IconButton, Stack, Typography, Box, Grid,
+  Card, CardContent, CardActions
+} from '@mui/material';
+import { PhotoCamera } from '@mui/icons-material';
+import '../styles/Profile.css'; // You can remove or keep any custom styles if necessary
 
 function Profile() {
   const [user, setUser] = useState({
-    name: 'John Doe',
+    firstName: 'John',
+    lastName: 'Doe',
     email: 'johndoe@example.com',
-    phone: '123-456-7890', // Initial phone number
+    phone: '123-456-7890',
   });
 
   const [profileImage, setProfileImage] = useState('https://via.placeholder.com/150');
-  const [isEditing, setIsEditing] = useState(false); // State to toggle edit mode
+  const [isEditing, setIsEditing] = useState(false);
 
   // Handle image upload
   const handleImageUpload = (e) => {
@@ -24,7 +30,7 @@ function Profile() {
     }
   };
 
-  // Handle input change for name and phone
+  // Handle input change for firstName, lastName, email, and phone
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({ ...prevUser, [name]: value }));
@@ -35,66 +41,127 @@ function Profile() {
     setIsEditing(!isEditing);
   };
 
-  // Save changes
-  const handleSave = () => {
-    toggleEdit(); // Exit edit mode after saving
-  };
-
   return (
-    <div className="profile-page">
-      <h2>User Profile</h2>
+    <Box sx={{ p: 4 }}>
+      <Grid container spacing={4} justifyContent="center">
+        {/* Profile Information */}
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Stack direction="column" spacing={2} alignItems="center">
+                {/* Profile Picture */}
+                <Avatar
+                  src={profileImage}
+                  alt={`${user.firstName} ${user.lastName}`}
+                  sx={{ width: 120, height: 120 }}
+                />
+                <label htmlFor="image-upload">
+                  <input
+                    style={{ display: 'none' }}
+                    accept="image/*"
+                    id="image-upload"
+                    type="file"
+                    onChange={handleImageUpload}
+                  />
+                  <IconButton color="primary" aria-label="upload picture" component="span">
+                    <PhotoCamera />
+                  </IconButton>
+                </label>
+                <Typography variant="h5">{`${user.firstName} ${user.lastName}`}</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {user.email}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {user.phone}
+                </Typography>
+              </Stack>
+            </CardContent>
+            <CardActions sx={{ justifyContent: 'center' }}>
+              <Button variant="contained" color="primary" onClick={toggleEdit}>
+                {isEditing ? 'Save' : 'Edit Profile'}
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
 
-      <div className="profile-section">
-        {/* User Information */}
-        <div className="profile-info">
-          <img
-            className="profile-pic"
-            src={profileImage}
-            alt="User Profile"
-          />
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
+        {/* Editable Form Fields */}
+        {isEditing && (
+          <Grid item xs={12} md={6}>
+            <Card>
+              <CardContent>
+                <Stack spacing={2}>
+                  <TextField
+                    label="First Name"
+                    name="firstName"
+                    value={user.firstName}
+                    onChange={handleInputChange}
+                    variant="outlined"
+                    fullWidth
+                  />
+                  <TextField
+                    label="Last Name"
+                    name="lastName"
+                    value={user.lastName}
+                    onChange={handleInputChange}
+                    variant="outlined"
+                    fullWidth
+                  />
+                  <TextField
+                    label="Email"
+                    name="email"
+                    value={user.email}
+                    onChange={handleInputChange}
+                    variant="outlined"
+                    fullWidth
+                  />
+                  <TextField
+                    label="Phone Number"
+                    name="phone"
+                    value={user.phone}
+                    onChange={handleInputChange}
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Stack>
+              </CardContent>
+            </Card>
+          </Grid>
+        )}
 
-          {/* Editable Fields */}
-          {isEditing ? (
-            <div className="editable-fields">
-              <input
-                type="text"
-                name="name"
-                value={user.name}
-                onChange={handleInputChange}
-                placeholder="Enter your name"
-              />
-              <input
-                type="text"
-                name="phone"
-                value={user.phone}
-                onChange={handleInputChange}
-                placeholder="Enter your phone number"
-              />
-              <button onClick={handleSave}>Save</button>
-            </div>
-          ) : (
-            <div className="user-details">
-              <h3>{user.name}</h3>
-              <p>{user.email}</p>
-              <p>{user.phone}</p>
-              <button onClick={toggleEdit}>Edit Profile</button>
-            </div>
-          )}
-        </div>
-
-        {/* Password Update */}
-        <div className="profile-edit">
-          <h3>Update Password</h3>
-          <input type="password" placeholder="Current Password" />
-          <input type="password" placeholder="New Password" />
-          <button>Update Password</button>
-        </div>
+        {/* Password Update Section */}
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Update Password</Typography>
+              <Stack spacing={2}>
+                <TextField
+                  label="Current Password"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                />
+                <TextField
+                  label="New Password"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                />
+                <Button variant="contained" color="secondary">
+                  Update Password
+                </Button>
+              </Stack>
+            </CardContent>
+          </Card>
+        </Grid>
 
         {/* Logout Button */}
-        <button className="logout-btn">Logout</button>
-      </div>
-    </div>
+        <Grid item xs={12} md={6}>
+          <Button variant="outlined" color="error" fullWidth>
+            Logout
+          </Button>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

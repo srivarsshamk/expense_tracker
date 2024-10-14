@@ -1,77 +1,82 @@
-/* src/components/Profile.css */
+/* Profile.css */
+
 .profile-page {
-  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
   text-align: center;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 600px;
 }
 
-.profile-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+.profile-header {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.profile-container {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .profile-info {
-  text-align: center;
+  margin-bottom: 20px;
 }
 
 .profile-pic {
+  border-radius: 50%;
   width: 150px;
   height: 150px;
-  border-radius: 50%;
   object-fit: cover;
+  margin-bottom: 10px;
 }
 
-.profile-edit {
-  width: 100%;
-  max-width: 400px;
-  text-align: left;
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-.editable-fields input {
+.upload-btn {
   display: block;
   margin: 10px auto;
+}
+
+.editable-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
   padding: 10px;
-  width: 90%;
-  max-width: 300px;
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: 100%;
 }
 
-.editable-fields button {
-  background-color: #06d1f9;
-  color: #32118f;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.editable-fields button:hover {
-  background-color: #32118f;
-  color: #03d8f0;
-}
-
-.user-details h3,
-.user-details p {
-  margin: 10px 0;
-}
-
+.save-btn,
+.edit-btn,
+.update-password-btn,
 .logout-btn {
-  margin-top: 10px;
+  background-color: #6200ea;
+  color: white;
   padding: 10px 20px;
-  margin-bottom: 30px;
-  background-color: #03d8f0;
-  color:#32118f;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 100px;
+  margin-top: 10px;
 }
 
+.save-btn:hover,
+.edit-btn:hover,
+.update-password-btn:hover,
 .logout-btn:hover {
-  background-color: #32118f;
+  background-color: #3700b3;
+}
+
+.user-details h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.user-details p {
+  font-size: 1rem;
+  margin: 5px 0;
 }
